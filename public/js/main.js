@@ -87,6 +87,7 @@ $(function(){
     events: {
       "click .toggle"   : "toggleDone",
       "dblclick .view"  : "edit",
+      "doubleTap .view"  : "edit",
       "click a.destroy" : "clear",
       "keypress .edit"  : "updateOnEnter",
       "blur .edit"      : "close"

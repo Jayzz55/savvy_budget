@@ -37,11 +37,49 @@ put '/api/budgets/:id' do
   budget.to_json
 end
 
+# Expense API route and controller
+
+get '/api/expenses' do
+  content_type :json
+  Expense.all.to_json
+end
+
+put '/api/expenses/:id' do
+  request_body = JSON.parse(request.body.read.to_s)
+  expense_title = request_body["title"]
+  expense_cost = request_body["cost"]
+
+  expense = Expense.find(params[:id])
+  expense.update(title: expense_title, cost: expense_cost)
+  content_type :json
+  expense.to_json
+end
+
+post '/api/expenses' do
+  request_body = JSON.parse(request.body.read.to_s)
+  expense_title = request_body["title"]
+  expense_cost = request_body["cost"]
+  expense_category_id = request_body["category_id"]
+  expense_order_num = request_body["order_num"]
+
+  expense = Expense.create(title: expense_title, cost: expense_cost, order_num: expense_order_num, category_id: expense_category_id)
+  content_type :json
+  expense.to_json
+end
+
+delete '/api/expenses/:id' do
+  expense = Expense.find(params[:id])
+  expense.delete
+  content_type :json
+  expense.to_json
+end
+
+
 # Category API route and controller
 
 get '/api/categories' do
   content_type :json
-  Category.all.to_json
+  Category.order(:id).all.to_json
 end
 
 put '/api/categories/:id' do
@@ -59,7 +97,7 @@ post '/api/categories' do
   request_body = JSON.parse(request.body.read.to_s)
   category_title = request_body["title"]
   category_subtotal = request_body["sub_total"]
-  category_order_num = request_body["order"]
+  category_order_num = request_body["order_num"]
   category_budget_id = request_body["budget_id"]
 
   category = Category.create(title: category_title, sub_total: category_subtotal, order_num: category_order_num, budget_id: category_budget_id)

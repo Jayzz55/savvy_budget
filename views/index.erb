@@ -25,6 +25,15 @@
 
 <!-- Templates -->
 
+<script type="text/template" id="expense-item-template">
+  <div class="view">
+    <label class="expense-label"><%%= title %></label>
+    <label class="expense-cost">$<%%= sub_total %></label>
+    <a class="destroy"></a>
+  </div>
+  <input class="edit" type="text" value="<%%= title %>" >
+</script>
+
 <script type="text/template" id="category-item-template">
   <ul id="expense-list">
     <div class="view">
@@ -33,7 +42,7 @@
       <label class="category-subtotal">$<%%= sub_total %></label>
       <a class="destroy"></a>
     </div>
-    <input class="edit" type="text" value="<%%- title %>" >
+    <input class="edit" type="text" value="<%%= title %>" >
     <input id="new-expense" type="text" placeholder="New expenses?">
   </ul>
 </script>

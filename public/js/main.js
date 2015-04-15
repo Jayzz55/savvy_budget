@@ -18,36 +18,121 @@ var Budget = Backbone.Model.extend({
 // Expense Model
 // ----------
 
-var Budget = Backbone.Model.extend({
+var Expense = Backbone.Model.extend({
   // Default attributes for the category item.
   defaults: function() {
     return {
-      id: $('.budget-view').attr('data-id'),
-      title: "My budget",
-      budget: 0.00
+      title: "empty expense...",
+      order_num: Expenses.nextOrder(),
+      cost: 0.00
     };
   },
-
-  url: '/api/budgets/'+$('.budget-view').attr('data-id')
-
+  urlRoot: '/api/expenses'
 });
 
 
 // Category Model
 // ----------
 
-// Our basic **Category** model has `title`, `order` attributes.
 var Category = Backbone.Model.extend({
   // Default attributes for the category item.
   defaults: function() {
     return {
       title: "empty category...",
-      order: Categories.nextOrder(),
+      order_num: Categories.nextOrder(),
       sub_total: 0.00,
-      budget_id: 1
+      budget_id: $('.budget-view').attr('data-id')
     };
   },
   urlRoot: '/api/categories'
+});
+
+// Expense Collection
+// ---------------
+
+var ExpenseList = Backbone.Collection.extend({
+  // Reference to this collection's model.
+  model: Expense,
+  url: '/api/expenses',
+
+  // We keep the Expenses in sequential order, despite being saved by unordered
+  // GUID in the database. This generates the next order number for new items.
+  nextOrder: function() {
+    if (!this.length) return 1;
+    return this.last().get('order_num') + 1;
+  },
+
+  // Categories are sorted by their original insertion order.
+  comparator: 'order_num'
+
+});
+
+// Create our global collection of **Expenses**.
+var Expenses = new ExpenseList;
+
+// Expense Item View
+// --------------
+
+// The DOM element for a category item...
+var ExpenseView = Backbone.View.extend({
+
+  //... is a list tag.
+  tagName:  "li",
+
+  // Cache the template function for a single item.
+  template: _.template($('#expense-item-template').html()),
+
+  // The DOM events specific to an item.
+  events: {
+    "dblclick .view"  : "edit",
+    "doubleTap .view"  : "edit",
+    "click a.destroy" : "clear",
+    "keypress .edit"  : "updateOnEnter",
+    "blur .edit"      : "close"
+  },
+
+  // The CategoryView listens for changes to its model, re-rendering. Since there's
+  // a one-to-one correspondence between a **Category** and a **CategoryView** in this
+  // app, we set a direct reference on the model for convenience.
+  initialize: function() {
+    this.listenTo(this.model, 'change', this.render);
+    this.listenTo(this.model, 'destroy', this.remove);
+  },
+
+  // Re-render the titles of the category item.
+  render: function() {
+    this.$el.html(this.template(this.model.toJSON()));
+    this.input = this.$('.edit');
+    return this;
+  },
+
+  // Switch this view into `"editing"` mode, displaying the input field.
+  edit: function() {
+    this.$el.addClass("editing");
+    this.input.focus();
+  },
+
+  // Close the `"editing"` mode, saving changes to the category.
+  close: function() {
+    var value = this.input.val();
+    if (!value) {
+      this.clear();
+    } else {
+      this.model.save({title: value});
+      this.$el.removeClass("editing");
+    }
+  },
+
+  // If you hit `enter`, we're through editing the item.
+  updateOnEnter: function(e) {
+    if (e.keyCode == 13) this.close();
+  },
+
+  // Remove the item, destroy the model.
+  clear: function() {
+    this.model.destroy();
+  },
+
 });
 
 // Category Collection
@@ -62,11 +147,11 @@ var CategoryList = Backbone.Collection.extend({
   // GUID in the database. This generates the next order number for new items.
   nextOrder: function() {
     if (!this.length) return 1;
-    return this.last().get('order') + 1;
+    return this.last().get('order_num') + 1;
   },
 
   // Categories are sorted by their original insertion order.
-  comparator: 'order'
+  comparator: 'order_num',
 
 });
 
@@ -92,7 +177,8 @@ var CategoryView = Backbone.View.extend({
     "click a.destroy" : "clear",
     "keypress .edit"  : "updateOnEnter",
     "blur .edit"      : "close",
-    "click .category-toggle" : "toggle"
+    "click .category-toggle" : "toggle",
+    "keypress #new-expense":  "createOnEnter"
   },
 
   // The CategoryView listens for changes to its model, re-rendering. Since there's
@@ -101,12 +187,19 @@ var CategoryView = Backbone.View.extend({
   initialize: function() {
     this.listenTo(this.model, 'change', this.render);
     this.listenTo(this.model, 'destroy', this.remove);
+
+    // this.listenTo(Expenses, 'add', this.addOne);
+    // this.listenTo(Expenses, 'reset', this.addAll);
+    // this.listenTo(Expenses, 'all', this.render);
+
+    Expenses.fetch();
   },
 
   // Re-render the titles of the category item.
   render: function() {
     this.$el.html(this.template(this.model.toJSON()));
     this.input = this.$('.edit');
+    this.expenseInput = this.$("#new-expense");
     return this;
   },
 
@@ -161,6 +254,16 @@ var CategoryView = Backbone.View.extend({
     this.$el.find("span").addClass("collapse");
     this.$el.find(".category-toggle").html("+");
     this.$el.find("#new-expense").removeClass("open");
+  },
+
+  // If you hit return in the main input field, create new **Category** model,
+  // persisting it to *localStorage*.
+  createOnEnter: function(e) {
+
+    if (e.keyCode != 13) return;
+    if (!this.expenseInput.val()) return;
+    Expenses.create({title: this.expenseInput.val(), category_id: this.model.id});
+    this.expenseInput.val('');
   }
 
 });

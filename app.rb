@@ -4,9 +4,9 @@ require 'pg'
 require 'json'
 require 'pry'
 require 'active_record'
-require './budget'
-require './category'
-require './expense'
+require './models/budget'
+require './models/category'
+require './models/expense'
 require './config'
 
 

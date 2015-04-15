@@ -15,6 +15,23 @@ var Budget = Backbone.Model.extend({
 
 });
 
+// Expense Model
+// ----------
+
+var Budget = Backbone.Model.extend({
+  // Default attributes for the category item.
+  defaults: function() {
+    return {
+      id: $('.budget-view').attr('data-id'),
+      title: "My budget",
+      budget: 0.00
+    };
+  },
+
+  url: '/api/budgets/'+$('.budget-view').attr('data-id')
+
+});
+
 
 // Category Model
 // ----------
@@ -237,7 +254,6 @@ var AppView = Backbone.View.extend({
   // Close the `"editing"` mode, saving changes to the category.
   close: function() {
     var value = this.budgetInput.val();
-    console.log (this.model);
     // Instantiate budget model
     budget = new Budget();
     budget.save({budget: value});

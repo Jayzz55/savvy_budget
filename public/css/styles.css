@@ -71,6 +71,7 @@ body {
   padding: 18px 20px 18px 0;
   position: relative;
   font-size: 24px;
+  /*margin: 0 -20px -20px -20px;*/
   border-bottom: 1px solid #cccccc;
 }
 
@@ -86,7 +87,7 @@ body {
 #category-list .destroy {
   position: absolute;
   right: 5px;
-  top: 20px;
+  top: 30px;
   display: none;
   cursor: pointer;
   width: 20px;
@@ -114,7 +115,7 @@ body {
 
 #category-list li.editing .edit {
   display: block;
-  width: 444px;
+  width: 90%;
   padding: 13px 15px 14px 20px;
   margin: 0;
 }
@@ -208,4 +209,10 @@ body {
 
 #credits a {
   color: #888;
+}
+
+#expense-list{
+  margin: 10px 0;
+  padding: 0;
+  list-style: none;
 }

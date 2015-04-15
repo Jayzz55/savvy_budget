@@ -1,5 +1,6 @@
 require 'pry'
 require 'active_record'
+require './budget'
 require './category'
 require './expense'
 require './config'

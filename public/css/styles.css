@@ -79,11 +79,6 @@ body {
   border-bottom: none;
 }
 
-#category-list li.done label {
-  color: #777777;
-  text-decoration: line-through;
-}
-
 #category-list .destroy {
   position: absolute;
   right: 5px;
@@ -103,6 +98,17 @@ body {
     background-position: 0 -20px;
 }
 
+.category-label {
+  /*border: 1px solid red;*/
+}
+
+.category-subtotal{
+  /*border: 1px solid red;*/
+  position: absolute;
+  right: 45px;
+  top: 30px;
+}
+
 #category-list li.editing {
   border-bottom: none;
   margin-top: -1px;
@@ -115,7 +121,7 @@ body {
 
 #category-list li.editing .edit {
   display: block;
-  width: 90%;
+  width: 444px;
   padding: 13px 15px 14px 20px;
   margin: 0;
 }
@@ -185,10 +191,6 @@ body {
   top: 1px;
 }
 
-#todo-count span {
-  font-weight: bold;
-}
-
 #instructions {
   margin: 10px auto;
   color: #777777;
@@ -200,15 +202,39 @@ body {
   color: #336699;
 }
 
-#credits {
-  margin: 30px auto;
-  color: #999;
-  text-shadow: rgba(255, 255, 255, 0.8) 0 1px 0;
-  text-align: center;
+.category-toggle{
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2em;
+  padding-right: 20px;
 }
 
-#credits a {
-  color: #888;
+.budget-view{
+  margin-bottom: 20px;
+}
+
+.budget-edit{
+  display: none;
+}
+
+.budget-view.editing .budget-edit {
+  display: block;
+  width: 444px;
+  padding: 13px 15px 14px 20px;
+  margin: 0;
+}
+
+.budget-view.editing .budget-label {
+  display: none;
+}
+
+#new-expense{
+  display: none;
+}
+
+#new-expense.open{
+  display: block;
+  margin-top: 20px;
 }
 
 #expense-list{

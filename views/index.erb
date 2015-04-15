@@ -2,10 +2,10 @@
 
   <header>
     <h1>Smart Budget</h1>
-    <!-- <div class="view">
-      <label>$500</label>
+    <div class="budget-view" data-id="<%= @budget.id %>">
+      <label class="budget-label">$<%= @budget.budget %></label>
+      <input class="budget-edit" type="text" value="<%= @budget.budget %>" >
     </div>
-    <input class="edit" type="text" value="$500" /> -->
     <input id="new-category" type="text" placeholder="New categories?">
   </header>
 
@@ -25,13 +25,16 @@
 
 <!-- Templates -->
 
-<script type="text/template" id="item-template">
+<script type="text/template" id="category-item-template">
   <ul id="expense-list">
     <div class="view">
-      <span class="colapse">+ </span> <label><%%= title %></label>
+      <span class="category-toggle collapse">+ </span> 
+      <label class="category-label"><%%= title %></label>
+      <label class="category-subtotal">$<%%= sub_total %></label>
       <a class="destroy"></a>
     </div>
-    <input class="edit" type="text" value="<%%- title %>" />
+    <input class="edit" type="text" value="<%%- title %>" >
+    <input id="new-expense" type="text" placeholder="New expenses?">
   </ul>
 </script>
 

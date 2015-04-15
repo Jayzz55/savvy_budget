@@ -2,6 +2,13 @@ CREATE DATABASE savvybudget;
 
 \c savvybudget
 
+CREATE TABLE budgets (
+  id SERIAL4 PRIMARY KEY,
+  title VARCHAR(300),
+  budget DECIMAL(18,2),
+  created_at TIMESTAMP
+);
+
 CREATE TABLE categories (
   id SERIAL4 PRIMARY KEY,
   title VARCHAR(200),

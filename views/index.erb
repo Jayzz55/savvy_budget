@@ -26,23 +26,29 @@
 <!-- Templates -->
 
 <script type="text/template" id="expense-item-template">
-  <div class="view">
-    <label class="expense-label"><%%= title %></label>
-    <label class="expense-cost">$<%%= sub_total %></label>
-    <a class="destroy"></a>
-  </div>
-  <input class="edit" type="text" value="<%%= title %>" >
+  <div class="expense-item">
+    <span class="expense-view">
+      <label class="expense-label"><%%= title %></label>
+      <input class="expense-edit" type="text" value="<%%= title %>" >
+    </span>
+    <span class="cost-view">
+      <label class="cost-label">$<%%= cost %></label>
+      <input class="cost-edit" type="text" value="<%%= cost %>" >
+    </span>
+    <a class="destroy-expense"></a>
+  </div>  
 </script>
 
 <script type="text/template" id="category-item-template">
+  
+  <div class="category-view">
+    <span class="category-toggle collapse">+ </span> 
+    <label class="category-label"><%%= title %></label>
+    <label class="category-subtotal">$<%%= sub_total %></label>
+    <a class="destroy-category"></a>
+  </div>
+  <input class="edit" type="text" value="<%%= title %>" >
   <ul id="expense-list">
-    <div class="view">
-      <span class="category-toggle collapse">+ </span> 
-      <label class="category-label"><%%= title %></label>
-      <label class="category-subtotal">$<%%= sub_total %></label>
-      <a class="destroy"></a>
-    </div>
-    <input class="edit" type="text" value="<%%= title %>" >
     <input id="new-expense" type="text" placeholder="New expenses?">
   </ul>
 </script>

@@ -61,6 +61,30 @@ body {
   display: none;
 }
 
+.budget-view{
+  margin-bottom: 20px;
+}
+
+.budget-edit{
+  display: none;
+}
+
+.budget-view.editing .budget-edit {
+  display: block;
+  width: 444px;
+  padding: 13px 15px 14px 20px;
+  margin: 0;
+}
+
+.budget-view.editing .budget-label {
+  display: none;
+}
+
+.category-view{
+  padding-bottom: 20px;
+  border-bottom: 1px solid #cccccc;
+}
+
 #category-list {
   margin: 10px 0;
   padding: 0;
@@ -72,14 +96,14 @@ body {
   position: relative;
   font-size: 24px;
   /*margin: 0 -20px -20px -20px;*/
-  border-bottom: 1px solid #cccccc;
+  /*border-bottom: 1px solid #cccccc;*/
 }
 
 #category-list li:last-child {
   border-bottom: none;
 }
 
-#category-list .destroy {
+#category-list .destroy-category {
   position: absolute;
   right: 5px;
   top: 30px;
@@ -90,11 +114,11 @@ body {
   background: url('../img/destroy.png') no-repeat;
 }
 
-#category-list li:hover .destroy {
+#category-list li:hover .destroy-category {
     display: block;
 }
 
-#category-list .destroy:hover {
+#category-list .destroy-category:hover {
     background-position: 0 -20px;
 }
 
@@ -106,7 +130,7 @@ body {
   /*border: 1px solid red;*/
   position: absolute;
   right: 45px;
-  top: 30px;
+  top: 20px;
 }
 
 #category-list li.editing {
@@ -126,11 +150,11 @@ body {
   margin: 0;
 }
 
-#category-list li.editing .view {
+#category-list li.editing .category-view {
   display: none;
 }
 
-#category-list li .view label {
+#category-list li .category-view label {
   word-break: break-word;
 }
 
@@ -209,30 +233,11 @@ body {
   padding-right: 20px;
 }
 
-.budget-view{
-  margin-bottom: 20px;
-}
-
-.budget-edit{
+#expense-list{
   display: none;
 }
 
-.budget-view.editing .budget-edit {
-  display: block;
-  width: 444px;
-  padding: 13px 15px 14px 20px;
-  margin: 0;
-}
-
-.budget-view.editing .budget-label {
-  display: none;
-}
-
-#new-expense{
-  display: none;
-}
-
-#new-expense.open{
+#expense-list.open{
   display: block;
   margin-top: 20px;
 }
@@ -241,4 +246,87 @@ body {
   margin: 10px 0;
   padding: 0;
   list-style: none;
+}
+
+#expense-list .destroy-expense {
+  position: absolute;
+  right: 5px;
+  top: 20px;
+  display: none;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  background: url('../img/destroy.png') no-repeat;
+}
+
+#expense-list li:hover .destroy-expense {
+    display: block;
+}
+
+#expense-list .destroy-expense:hover {
+    background-position: 0 -20px;
+}
+
+.expense-label, .expense-edit, .cost-label, .cost-edit, #expense-list input[type="text"]{
+  font-size: 0.8em;
+  display: inline-block;
+  /*border: 1px solid blue;*/
+}
+
+.expense-label{
+  display: inline-block;
+  /*display: none;*/
+  width: 330px;
+  position: absolute;
+}
+
+#expense-list .expense-view.editing .expense-label{
+  display: none;
+}
+
+#expense-list .expense-view input[type="text"]{
+  display: none;
+  /*display: inline-block;*/
+  /*width: 320px;
+  position: absolute;
+  left: 0;
+  top:0;*/
+}
+
+#expense-list .expense-view.editing input[type="text"]{
+  display: inline-block;
+  width: 320px;
+  position: absolute;
+  left: 0;
+  top:0;
+}
+
+
+.cost-label{
+  display: inline-block;
+  /*display: none;*/
+  width: 70px;
+  position: absolute;
+  right: 45px;
+}
+
+#expense-list .cost-view.editing .cost-label{
+  display: none;
+}
+
+#expense-list .cost-view input[type="text"]{
+  display: none;
+  /*display: inline-block;*/
+  /*width: 70px;
+  position: absolute;
+  right: 45px;
+  top:0;*/
+}
+
+#expense-list .cost-view.editing input[type="text"]{
+  display: inline-block;
+  width: 70px;
+  position: absolute;
+  right: 45px;
+  top:0;
 }

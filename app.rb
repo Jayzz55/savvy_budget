@@ -41,7 +41,7 @@ end
 
 get '/api/expenses' do
   content_type :json
-  Expense.all.to_json
+  Expense.order(:id).all.to_json
 end
 
 put '/api/expenses/:id' do
@@ -60,9 +60,8 @@ post '/api/expenses' do
   expense_title = request_body["title"]
   expense_cost = request_body["cost"]
   expense_category_id = request_body["category_id"]
-  expense_order_num = request_body["order_num"]
 
-  expense = Expense.create(title: expense_title, cost: expense_cost, order_num: expense_order_num, category_id: expense_category_id)
+  expense = Expense.create(title: expense_title, cost: expense_cost, category_id: expense_category_id)
   content_type :json
   expense.to_json
 end
@@ -97,10 +96,9 @@ post '/api/categories' do
   request_body = JSON.parse(request.body.read.to_s)
   category_title = request_body["title"]
   category_subtotal = request_body["sub_total"]
-  category_order_num = request_body["order_num"]
   category_budget_id = request_body["budget_id"]
 
-  category = Category.create(title: category_title, sub_total: category_subtotal, order_num: category_order_num, budget_id: category_budget_id)
+  category = Category.create(title: category_title, sub_total: category_subtotal, budget_id: category_budget_id)
   content_type :json
   category.to_json
 end

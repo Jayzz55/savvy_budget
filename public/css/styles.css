@@ -106,7 +106,7 @@ body {
 #category-list .destroy-category {
   position: absolute;
   right: 5px;
-  top: 30px;
+  top: 20px;
   display: none;
   cursor: pointer;
   width: 20px;
@@ -143,7 +143,7 @@ body {
   margin-bottom: -1px;
 }
 
-#category-list li.editing .edit {
+#category-list li.editing .category-edit {
   display: block;
   width: 444px;
   padding: 13px 15px 14px 20px;
@@ -158,7 +158,7 @@ body {
   word-break: break-word;
 }
 
-#category-list li .edit {
+#category-list li .category-edit {
   display: none;
 }
 
@@ -176,43 +176,6 @@ body {
   -ms-border-radius: 0 0 5px 5px;
   -o-border-radius: 0 0 5px 5px;
   border-radius: 0 0 5px 5px;
-}
-
-#clear-completed {
-  float: right;
-  line-height: 20px;
-  text-decoration: none;
-  background: rgba(0, 0, 0, 0.1);
-  color: #555555;
-  font-size: 11px;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  padding: 0 10px 1px;
-  cursor: pointer;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  -ms-border-radius: 12px;
-  -o-border-radius: 12px;
-  border-radius: 12px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0 0;
-  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0 0;
-  -ms-box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0 0;
-  -o-box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0 0;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0 0;
-}
-
-#clear-completed:hover {
-  background: rgba(0, 0, 0, 0.15);
-  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
-  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
-  -ms-box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
-  -o-box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
-  box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
-}
-
-#clear-completed:active {
-  position: relative;
-  top: 1px;
 }
 
 #instructions {
@@ -233,25 +196,26 @@ body {
   padding-right: 20px;
 }
 
-#expense-list{
-  display: none;
-}
-
 #expense-list.open{
   display: block;
   margin-top: 20px;
 }
 
 #expense-list{
+  display: none;
   margin: 10px 0;
   padding: 0;
   list-style: none;
 }
 
+#expense-list li{
+  margin: 20px 0;
+}
+
 #expense-list .destroy-expense {
   position: absolute;
   right: 5px;
-  top: 20px;
+  top: 18px;
   display: none;
   cursor: pointer;
   width: 20px;
@@ -274,8 +238,6 @@ body {
 }
 
 .expense-label{
-  display: inline-block;
-  /*display: none;*/
   width: 330px;
   position: absolute;
 }
@@ -286,11 +248,6 @@ body {
 
 #expense-list .expense-view input[type="text"]{
   display: none;
-  /*display: inline-block;*/
-  /*width: 320px;
-  position: absolute;
-  left: 0;
-  top:0;*/
 }
 
 #expense-list .expense-view.editing input[type="text"]{
@@ -303,8 +260,6 @@ body {
 
 
 .cost-label{
-  display: inline-block;
-  /*display: none;*/
   width: 70px;
   position: absolute;
   right: 45px;
@@ -316,11 +271,6 @@ body {
 
 #expense-list .cost-view input[type="text"]{
   display: none;
-  /*display: inline-block;*/
-  /*width: 70px;
-  position: absolute;
-  right: 45px;
-  top:0;*/
 }
 
 #expense-list .cost-view.editing input[type="text"]{

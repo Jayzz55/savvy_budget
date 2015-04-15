@@ -179,8 +179,8 @@ var CategoryView = Backbone.View.extend({
     "dblclick .category-view"  : "edit",
     "doubleTap .category-view"  : "edit",
     "click a.destroy-category" : "clear",
-    "keypress .edit"  : "updateOnEnter",
-    "blur .edit"      : "close",
+    "keypress .category-edit"  : "updateOnEnter",
+    "blur .category-edit"      : "close",
     "click .category-toggle" : "toggle",
     "keypress #new-expense":  "createOnEnter"
   },
@@ -203,7 +203,7 @@ var CategoryView = Backbone.View.extend({
   // Re-render the titles of the category item.
   render: function() {
     this.$el.html(this.template(this.model.toJSON()));
-    this.input = this.$('.edit');
+    this.input = this.$('.category-edit');
     this.expenseInput = this.$("#new-expense");
 
     return this;

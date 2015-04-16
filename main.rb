@@ -15,6 +15,7 @@ after do
 end
 
 get '/' do
+  Budget.create(title: 'new budget') if !(Budget.first)
   @budget = Budget.first
   erb :index
 end

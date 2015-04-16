@@ -405,7 +405,7 @@ var AppView = Backbone.View.extend({
     budget = new Budget();
     budget.save({budget: value});
     this.budgetView.removeClass("editing");
-    this.budgetLabel.html(budget.get("budget"));
+    this.budgetLabel.html('$'+budget.get("budget"));
 
   },
 

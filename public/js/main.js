@@ -49,7 +49,6 @@ var Category = Backbone.Model.extend({
 // ---------------
 
 var ExpenseList = Backbone.Collection.extend({
-  // Reference to this collection's model.
   model: Expense,
   url: '/api/expenses',
 
@@ -88,6 +87,7 @@ var ExpenseView = Backbone.View.extend({
   initialize: function() {
     this.listenTo(this.model, 'change', this.render);
     this.listenTo(this.model, 'destroy', this.remove);
+    // this.on('updateSubtotal',this.testing);
   },
 
   // Re-render the titles of the category item.
@@ -96,6 +96,10 @@ var ExpenseView = Backbone.View.extend({
     this.expenseInput = this.$el.find('.expense-edit');
     this.costInput = this.$el.find('.cost-edit');
     return this;
+  },
+
+  testing: function(){
+    console.log('Triggered');
   },
 
   // Switch this view into `"editing"` mode, displaying the input field.
@@ -120,22 +124,23 @@ var ExpenseView = Backbone.View.extend({
   },
 
   closeCost: function() {
+    // console.log('Just Close cost');
     var value = this.costInput.val();
-    if (!value) {
-      this.clear();
-    } else {
-      this.model.save({cost: value});
-      this.$el.find('.cost-view').removeClass("editing");
-    }
+    var oldCost = Number(this.$el.find('.cost-label').html().substr(1));
+    this.model.save({cost: value});
+    var newCost = Number(this.model.get('cost'));
+    this.$el.find('.cost-view').removeClass("editing");
+    Backbone.pubSub.trigger('updateSubtotal', { oldCost: oldCost, newCost: newCost, categoryId: this.model.get('category_id') });
+    
   },
 
   // If you hit `enter`, we're through editing the item.
   updateExpenseOnEnter: function(e) {
-    if (e.keyCode == 13) this.closeExpense();
+    if (e.keyCode == 13) this.expenseInput.blur();
   },
 
   updateCostOnEnter: function(e) {
-    if (e.keyCode == 13) this.closeCost();
+    if (e.keyCode == 13) this.costInput.blur();
   },
 
   // Remove the item, destroy the model.
@@ -145,11 +150,13 @@ var ExpenseView = Backbone.View.extend({
 
 });
 
+// create a global event mechanism
+Backbone.pubSub = _.extend({}, Backbone.Events);
+
 // Category Collection
 // ---------------
 
 var CategoryList = Backbone.Collection.extend({
-  // Reference to this collection's model.
   model: Category,
   url: '/api/categories',
 
@@ -191,10 +198,7 @@ var CategoryView = Backbone.View.extend({
 
     this.listenTo(Expenses, 'add', this.addOne);
     this.listenTo(Expenses, 'reset', this.addAll);
-    // this.listenTo(Expenses, 'all', this.test);
-    this.listenTo(Expenses, 'change', this.test);
-
-    this.oldExpense = 0;
+    Backbone.pubSub.on('updateSubtotal', this.updateSubtotal, this);
 
     Expenses.fetch();
   },
@@ -207,12 +211,12 @@ var CategoryView = Backbone.View.extend({
     return this;
   },
 
-  test: function(){
-    var currentExpense = Number(this.$el.find('.cost-label').html().substr(1));
-    console.log("expense is changing!");
-    console.log("previous expense: ",1);
-    console.log("current expense: ",currentExpense);
-    // Expense.each(this.updateSubtotal, this); 
+  updateSubtotal: function(event){
+    if (this.model.id !== event.categoryId) return;
+    var updatedSubtotal = Number(this.model.get('sub_total')).toFixed(1) - event.oldCost + event.newCost;
+    this.model.set('sub_total', updatedSubtotal);
+    this.$el.find('.category-subtotal').html('$' + updatedSubtotal);
+    this.model.save();
   },
 
   updateRender: function(){
@@ -275,7 +279,6 @@ var CategoryView = Backbone.View.extend({
   // If you hit return in the main input field, create new **Category** model,
   // persisting it to *localStorage*.
   createOnEnter: function(e) {
-
     if (e.keyCode != 13) return;
     if (!this.expenseInput.val()) return;
     Expenses.create({title: this.expenseInput.val(), category_id: this.model.id});
@@ -286,17 +289,11 @@ var CategoryView = Backbone.View.extend({
     if (this.model.id !== expense.get('category_id')) return;
     var expenseView = new ExpenseView({model: expense});
     this.$("#expense-list").append(expenseView.render().el);
-    console.log(Number(expense.get('cost')));
-    this.model.set('sub_total', Number(this.model.get('sub_total')) + Number(expense.get('cost')));
+    // this.model.set('sub_total', Number(this.model.get('sub_total')) + Number(expense.get('cost')));
   },
 
   addAll: function() {
-    Expense.each(this.addOne, this);  
-  },
-
-  updateSubtotal: function(expense){
-    if (this.model.id !== expense.get('category_id')) return;
-    this.model.set('sub_total', Number(this.model.get('sub_total')) + Number(expense.get('cost')));
+    Expenses.each(this.addOne, this);  
   }
 
 });

@@ -72,8 +72,10 @@ var ExpenseView = Backbone.View.extend({
   events: {
     "dblclick .expense-view"  : "editExpense",
     "doubleTap .expense-view"  : "editExpense",
+    "longTap .expense-view"  : "editExpense",
     "dblclick .cost-view"  : "editCost",
     "doubleTap .cost-view"  : "editCost",
+    "longTap .cost-view"  : "editCost",
     "click a.destroy-expense" : "clear",
     "keypress .expense-edit"  : "updateExpenseOnEnter",
     "blur .expense-edit"      : "closeExpense",
@@ -185,6 +187,7 @@ var CategoryView = Backbone.View.extend({
   events: {
     "dblclick .category-view"  : "edit",
     "doubleTap .category-view"  : "edit",
+    "longTap .category-view"  : "edit",
     "click a.destroy-category" : "clear",
     "keypress .category-edit"  : "updateOnEnter",
     "blur .category-edit"      : "close",
@@ -318,6 +321,7 @@ var AppView = Backbone.View.extend({
     "keypress #new-category":  "createOnEnter",
     "dblclick .budget-view"  : "edit",
     "doubleTap .budget-view"  : "edit",
+    "longTap .budget-view"  : "edit",
     "keypress .budget-edit"  : "updateOnEnter",
     "blur .budget-edit"      : "close"
   },

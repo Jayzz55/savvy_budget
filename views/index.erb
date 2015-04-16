@@ -5,6 +5,7 @@
     <div class="budget-view" data-id="<%= @budget.id %>">
       <label class="budget-label">$<%= @budget.budget %></label>
       <input class="budget-edit" type="text" value="<%= @budget.budget %>" >
+      <label class="spent-label">Spent: $ <span id="total-expenses"></span> </label>
     </div>
     <input id="new-category" type="text" placeholder="New categories?">
   </header>

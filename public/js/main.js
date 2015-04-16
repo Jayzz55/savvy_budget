@@ -355,25 +355,32 @@ var AppView = Backbone.View.extend({
       this.footer.show();
       this.footer.html(this.statsTemplate({totalCategories: totalCategories}));
       this.checkBudget();
+      $('.spent-label').show();
+      $("#total-expenses").html(this.totalExpenses().toFixed(1));
     } else {
       this.main.hide();
       this.footer.hide();
+      $('.spent-label').hide();
+
     }
 
   },
 
   checkBudget: function(){
-    var collect = [];
-    var totalExpenses = 0;
     var budgetSet = Number(this.budgetLabel.html().substr(1));
-    Categories.each(function(category){collect.push(Number(category.get('sub_total')))});
-    totalExpenses = collect.reduce( function(total, num){ return total + num }, 0);
-    if(totalExpenses <= budgetSet){
+    if(this.totalExpenses() <= budgetSet){
       this.$el.removeClass("overbudget");
     } else {
       this.$el.addClass("overbudget");
     };
 
+  },
+
+  totalExpenses: function(){
+    var collect = [];
+    var totalExpenses = 0;
+    Categories.each(function(category){collect.push(Number(category.get('sub_total')))});
+    return totalExpenses = collect.reduce( function(total, num){ return total + num }, 0);
   },
 
   // Add a single category item to the list by creating a view for it, and

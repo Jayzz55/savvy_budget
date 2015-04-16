@@ -23,11 +23,11 @@ body {
   -ms-box-shadow: rgba(0, 0, 0, 0.2) 0 2px 6px 0;
   -o-box-shadow: rgba(0, 0, 0, 0.2) 0 2px 6px 0;
   box-shadow: rgba(0, 0, 0, 0.2) 0 2px 6px 0;
-  -webkit-border-radius: 0 0 5px 5px;
-  -moz-border-radius: 0 0 5px 5px;
-  -ms-border-radius: 0 0 5px 5px;
-  -o-border-radius: 0 0 5px 5px;
-  border-radius: 0 0 5px 5px;
+  -webkit-border-radius: 0 0 0.32em 0.32em;
+  -moz-border-radius: 0 0 0.32em 0.32em;
+  -ms-border-radius: 0 0 0.32em 0.32em;
+  -o-border-radius: 0 0 0.32em 0.32em;
+  border-radius: 0 0 0.32em 0.32em;
 }
 
 #categoryapp.overbudget{
@@ -85,10 +85,21 @@ input[type="number"] {
   display: block;
   width: 40%;
   margin: 30px auto;
+  margin-bottom: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid #111;
   text-align: center;
   font-size: 2em;
+  font-weight: bold;
+}
+
+.spent-label{
+  display: block;
+  width: 50%;
+  margin: 20px auto;
+  padding-bottom: 10px;
+  text-align: center;
+  font-size: 1.5em;
 }
 
 .budget-view{
@@ -201,11 +212,11 @@ input[type="number"] {
   border-top: 1px solid #ededed;
   padding: 0 20px;
   line-height: 37px;
-  -webkit-border-radius: 0 0 5px 5px;
-  -moz-border-radius: 0 0 5px 5px;
-  -ms-border-radius: 0 0 5px 5px;
-  -o-border-radius: 0 0 5px 5px;
-  border-radius: 0 0 5px 5px;
+  -webkit-border-radius: 0 0 0.32em 0.32em;
+  -moz-border-radius: 0 0 0.32em 0.32em;
+  -ms-border-radius: 0 0 0.32em 0.32em;
+  -o-border-radius: 0 0 0.32em 0.32em;
+  border-radius: 0 0 0.32em 0.32em;
 }
 
 #instructions {
@@ -223,7 +234,7 @@ input[type="number"] {
   cursor: pointer;
   font-weight: bold;
   font-size: 1.2em;
-  padding-right: 20px;
+  padding: 20px;
 }
 
 #expense-list.open{

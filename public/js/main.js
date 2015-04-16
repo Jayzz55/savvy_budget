@@ -131,6 +131,7 @@ var ExpenseView = Backbone.View.extend({
     var newCost = Number(this.model.get('cost'));
     this.$el.find('.cost-view').removeClass("editing");
     Backbone.pubSub.trigger('updateSubtotal', { oldCost: oldCost, newCost: newCost, categoryId: this.model.get('category_id') });
+    Backbone.pubSub.trigger('checkBudget');
     
   },
 
@@ -145,6 +146,9 @@ var ExpenseView = Backbone.View.extend({
 
   // Remove the item, destroy the model.
   clear: function() {
+    var oldCost = Number(this.$el.find('.cost-label').html().substr(1));
+    var newCost = 0;
+    Backbone.pubSub.trigger('updateSubtotal', { oldCost: oldCost, newCost: newCost, categoryId: this.model.get('category_id') });
     this.model.destroy();
   },
 
@@ -275,9 +279,7 @@ var CategoryView = Backbone.View.extend({
     this.$el.find(".category-toggle").html("+");
     this.$el.find("#expense-list").removeClass("open");
   },
-
-  // If you hit return in the main input field, create new **Category** model,
-  // persisting it to *localStorage*.
+ 
   createOnEnter: function(e) {
     if (e.keyCode != 13) return;
     if (!this.expenseInput.val()) return;
@@ -320,9 +322,7 @@ var AppView = Backbone.View.extend({
     "blur .budget-edit"      : "close"
   },
 
-  // At initialization we bind to the relevant events on the `Categories`
-  // collection, when items are added or changed. Kick things off by
-  // loading any preexisting categories that might be saved in *localStorage*.
+  
   initialize: function() {
 
     this.budgetView = this.$el.find('.budget-view');
@@ -333,6 +333,7 @@ var AppView = Backbone.View.extend({
     this.listenTo(Categories, 'add', this.addOne);
     this.listenTo(Categories, 'reset', this.addAll);
     this.listenTo(Categories, 'all', this.render);
+    Backbone.pubSub.on('checkBudget', this.checkBudget, this);
 
     this.footer = this.$('footer');
     this.main = $('#main');
@@ -349,10 +350,25 @@ var AppView = Backbone.View.extend({
       this.main.show();
       this.footer.show();
       this.footer.html(this.statsTemplate({totalCategories: totalCategories}));
+      this.checkBudget();
     } else {
       this.main.hide();
       this.footer.hide();
     }
+
+  },
+
+  checkBudget: function(){
+    var collect = [];
+    var totalExpenses = 0;
+    var budgetSet = Number(this.budgetLabel.html().substr(1));
+    Categories.each(function(category){collect.push(Number(category.get('sub_total')))});
+    totalExpenses = collect.reduce( function(total, num){ return total + num }, 0);
+    if(totalExpenses <= budgetSet){
+      this.$el.removeClass("overbudget");
+    } else {
+      this.$el.addClass("overbudget");
+    };
 
   },
 
@@ -368,8 +384,6 @@ var AppView = Backbone.View.extend({
     Categories.each(this.addOne, this);
   },
 
-  // If you hit return in the main input field, create new **Category** model,
-  // persisting it to *localStorage*.
   createOnEnter: function(e) {
     if (e.keyCode != 13) return;
     if (!this.input.val()) return;
@@ -397,7 +411,7 @@ var AppView = Backbone.View.extend({
 
   // If you hit `enter`, we're through editing the item.
   updateOnEnter: function(e) {
-    if (e.keyCode == 13) this.close();
+    if (e.keyCode == 13) this.budgetInput.blur();
   },
 
 });

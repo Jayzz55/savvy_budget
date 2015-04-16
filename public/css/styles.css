@@ -269,11 +269,11 @@ body {
   display: none;
 }
 
-#expense-list .cost-view input[type="text"]{
+#expense-list .cost-view input[type="number"]{
   display: none;
 }
 
-#expense-list .cost-view.editing input[type="text"]{
+#expense-list .cost-view.editing input[type="number"]{
   display: inline-block;
   width: 70px;
   position: absolute;

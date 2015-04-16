@@ -61,7 +61,6 @@ var Expenses = new ExpenseList;
 // Expense Item View
 // --------------
 
-// The DOM element for a category item...
 var ExpenseView = Backbone.View.extend({
 
   //... is a list tag.
@@ -101,14 +100,11 @@ var ExpenseView = Backbone.View.extend({
 
   // Switch this view into `"editing"` mode, displaying the input field.
   editExpense: function() {
-    console.log("I hear you Expense");
-    // console.log(this.$el);
     this.$el.find('.expense-view').addClass("editing");
     this.expenseInput.focus();
   },
 
   editCost: function() {
-    console.log("I hear you Cost");
     this.$el.find('.cost-view').addClass("editing");
     this.costInput.focus();
   },
@@ -190,12 +186,15 @@ var CategoryView = Backbone.View.extend({
   // app, we set a direct reference on the model for convenience.
   initialize: function() {
 
-    this.listenTo(this.model, 'change', this.render);
+    this.listenTo(this.model, 'change', this.updateRender);
     this.listenTo(this.model, 'destroy', this.remove);
 
     this.listenTo(Expenses, 'add', this.addOne);
     this.listenTo(Expenses, 'reset', this.addAll);
-    // this.listenTo(Expenses, 'all', this.render);
+    // this.listenTo(Expenses, 'all', this.test);
+    this.listenTo(Expenses, 'change', this.test);
+
+    this.oldExpense = 0;
 
     Expenses.fetch();
   },
@@ -205,8 +204,20 @@ var CategoryView = Backbone.View.extend({
     this.$el.html(this.template(this.model.toJSON()));
     this.input = this.$('.category-edit');
     this.expenseInput = this.$("#new-expense");
-
     return this;
+  },
+
+  test: function(){
+    var currentExpense = Number(this.$el.find('.cost-label').html().substr(1));
+    console.log("expense is changing!");
+    console.log("previous expense: ",1);
+    console.log("current expense: ",currentExpense);
+    // Expense.each(this.updateSubtotal, this); 
+  },
+
+  updateRender: function(){
+    this.$el.find('.category-label').html(this.model.get('title'));
+    this.$el.find('.category-subtotal').html('$' + Number(this.model.get('sub_total')).toFixed(1));
   },
 
   // Switch this view into `"editing"` mode, displaying the input field.
@@ -251,7 +262,6 @@ var CategoryView = Backbone.View.extend({
     this.$el.find("span").addClass("expand");
     this.$el.find(".category-toggle").html("-");
     this.$el.find("#expense-list").addClass("open");
-    // this.$el.append("<li>1231312</li>");
   },
 
   // Collapse the list of expenses and expense input box
@@ -276,10 +286,17 @@ var CategoryView = Backbone.View.extend({
     if (this.model.id !== expense.get('category_id')) return;
     var expenseView = new ExpenseView({model: expense});
     this.$("#expense-list").append(expenseView.render().el);
+    console.log(Number(expense.get('cost')));
+    this.model.set('sub_total', Number(this.model.get('sub_total')) + Number(expense.get('cost')));
   },
 
   addAll: function() {
-    Expense.each(this.addOne, this);
+    Expense.each(this.addOne, this);  
+  },
+
+  updateSubtotal: function(expense){
+    if (this.model.id !== expense.get('category_id')) return;
+    this.model.set('sub_total', Number(this.model.get('sub_total')) + Number(expense.get('cost')));
   }
 
 });

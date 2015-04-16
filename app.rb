@@ -1,8 +1,6 @@
 require 'sinatra'
 require 'sinatra/reloader'
-require 'pg'
 require 'json'
-require 'pry'
 require 'active_record'
 require './models/budget'
 require './models/category'

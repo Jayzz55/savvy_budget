@@ -1,4 +1,6 @@
-.budget-title, .budget-password, .budget-budget, .index-button{
+
+
+.budget-title, .budget-password, .budget-budget, .index-button, .sign-up, .sign-in, .button{
   text-align: center;
   padding: 10px;
 }
@@ -6,3 +8,70 @@
 .hidden{
   display: none;
 }
+
+input,
+label,
+select,
+button,
+textarea
+{
+  margin:0;
+  border:0;
+  padding:0;
+  display:inline-block;
+  vertical-align:middle;
+  white-space:normal;
+  background:none;
+  line-height:1;
+  
+}
+ 
+/* Remove the stupid outer glow in Webkit */
+input:focus
+{
+  outline:0;
+}
+ 
+/* Box Sizing Reset
+-----------------------------------------------*/
+ 
+/* All of our custom controls should be what we expect them to be */
+input,
+textarea
+{
+  -webkit-box-sizing:content-box;
+  -moz-box-sizing:content-box;
+  box-sizing:content-box;
+}
+ 
+/* These elements are usually rendered a certain way by the browser */
+button,
+input[type=reset],
+input[type=button],
+input[type=submit],
+input[type=checkbox],
+input[type=radio],
+select
+{
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+}
+
+input{
+  margin: 10px;
+  border-bottom: 1px solid black;
+  text-align: center;
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill,
+input:-moz-autofill, textarea:-moz-autofill, select:-moz-autofill,
+input:autofill, textarea:autofill, select:autofill {
+  background-color: none;
+  background-image: none;
+  color: rgb(0, 0, 0);
+}
+ 
+
+
+

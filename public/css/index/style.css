@@ -1,0 +1,8 @@
+.budget-title, .budget-password, .budget-budget, .index-button{
+  text-align: center;
+  padding: 10px;
+}
+
+.hidden{
+  display: none;
+}

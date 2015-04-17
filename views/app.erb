@@ -1,0 +1,68 @@
+<div id="categoryapp">
+  <section class="logging">
+    <% if logged_in? %>
+        <form action="/session" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button>Log out</button>
+        </form>
+      </p>
+    <% end %>
+  </section>
+
+  <header>
+    <h1> <%= @budget.title %> </h1>
+    <div class="budget-view" data-id="<%= @budget.id %>">
+      <label class="budget-label">$<%= @budget.budget %></label>
+      <input class="budget-edit" type="text" value="<%= @budget.budget %>" >
+      <label class="spent-label">Spent: $ <span id="total-expenses"></span> </label>
+    </div>
+    <input id="new-category" type="text" placeholder="New categories?">
+  </header>
+
+  <section id="main">
+    <ul id="category-list"></ul>
+  </section>
+
+  <footer>
+  </footer>
+
+</div>
+
+<div id="instructions">
+  Double-click to edit a category.
+</div>
+
+
+<!-- Templates -->
+
+<script type="text/template" id="expense-item-template">
+  <div class="expense-item">
+    <span class="expense-view">
+      <label class="expense-label"><%%= title %></label>
+      <input class="expense-edit" type="text" value="<%%= title %>" >
+    </span>
+    <span class="cost-view">
+      <label class="cost-label" >$<%%= cost %></label>
+      <input class="cost-edit" type="number" step="0.01" value="<%%= cost %>" >
+    </span>
+    <a class="destroy-expense"></a>
+  </div>  
+</script>
+
+<script type="text/template" id="category-item-template">
+  
+  <div class="category-view">
+    <span class="category-toggle collapse">+ </span> 
+    <label class="category-label"><%%= title %></label>
+    <label class="category-subtotal">$<%%= sub_total %></label>
+    <a class="destroy-category"></a>
+  </div>
+  <input class="category-edit" type="text" value="<%%= title %>" >
+  <ul id="expense-list">
+    <input id="new-expense" type="text" placeholder="New expenses?">
+  </ul>
+</script>
+
+<script type="text/template" id="stats-template">
+  <div class="category-count"><b><%%= totalCategories %></b> <%%= totalCategories == 1 ? 'category' : 'categories' %> </div>
+</script>

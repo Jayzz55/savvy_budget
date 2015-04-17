@@ -2,11 +2,13 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'json'
 require 'active_record'
+require 'bcrypt'
 require './models/budget'
 require './models/category'
 require './models/expense'
 require './config'
 
+enable :sessions
 
 # require './seed'
 
@@ -15,9 +17,52 @@ after do
 end
 
 get '/' do
-  Budget.create(title: 'new budget') if !(Budget.first)
-  @budget = Budget.first
-  erb :index
+  erb :index, :layout => :index_layout
+end
+
+get '/app' do
+  redirect to '/' unless current_budget
+  @budget = current_budget
+  erb :app, :layout => :app_layout
+end
+
+# Sessions
+
+get '/session/new' do
+  erb :index, :layout => :index_layout
+end
+
+post '/session' do
+  @budget = Budget.where(title: params[:title]).first
+  if @budget && @budget.authenticate(params[:password])
+    session[:budget_id] = @budget.id
+    redirect to '/app'
+  else
+    erb :index
+  end
+end
+
+delete '/session' do
+  session[:budget_id] = nil
+  redirect to '/'
+end
+
+helpers do
+  def logged_in?
+    !!current_budget
+  end
+
+  def current_budget
+    Budget.find_by(id: session[:budget_id])
+  end
+end
+
+# Create new budget
+
+post '/budgets' do
+  @budget = Budget.create(title: params[:title], budget: params[:budget], password: params[:password])
+  session[:budget_id] = @budget.id
+  redirect to '/app'
 end
 
 # Budget API route and controller

@@ -1,59 +1,83 @@
-<div id="categoryapp">
-
-  <header>
-    <h1>Smart Budget</h1>
-    <div class="budget-view" data-id="<%= @budget.id %>">
-      <label class="budget-label">$<%= @budget.budget %></label>
-      <input class="budget-edit" type="text" value="<%= @budget.budget %>" >
-      <label class="spent-label">Spent: $ <span id="total-expenses"></span> </label>
-    </div>
-    <input id="new-category" type="text" placeholder="New categories?">
-  </header>
-
-  <section id="main">
-    <ul id="category-list"></ul>
-  </section>
-
-  <footer>
-  </footer>
-
-</div>
-
-<div id="instructions">
-  Double-click to edit a category.
-</div>
-
-
-<!-- Templates -->
-
-<script type="text/template" id="expense-item-template">
-  <div class="expense-item">
-    <span class="expense-view">
-      <label class="expense-label"><%%= title %></label>
-      <input class="expense-edit" type="text" value="<%%= title %>" >
-    </span>
-    <span class="cost-view">
-      <label class="cost-label" >$<%%= cost %></label>
-      <input class="cost-edit" type="number" step="0.01" value="<%%= cost %>" >
-    </span>
-    <a class="destroy-expense"></a>
-  </div>  
-</script>
-
-<script type="text/template" id="category-item-template">
-  
-  <div class="category-view">
-    <span class="category-toggle collapse">+ </span> 
-    <label class="category-label"><%%= title %></label>
-    <label class="category-subtotal">$<%%= sub_total %></label>
-    <a class="destroy-category"></a>
-  </div>
-  <input class="category-edit" type="text" value="<%%= title %>" >
-  <ul id="expense-list">
-    <input id="new-expense" type="text" placeholder="New expenses?">
+<!-- <nav>
+  <ul>
+    <li><a href="#slide-1">Slide 1</a></li>
+    <li><a href="#slide-2">Slide 2</a></li>
+    <li><a href="#slide-3">Slide 3</a></li>
+    <li><a href="#slide-4">Slide 4</a></li>
   </ul>
-</script>
+</nav> -->
 
-<script type="text/template" id="stats-template">
-  <div class="category-count"><b><%%= totalCategories %></b> <%%= totalCategories == 1 ? 'category' : 'categories' %> </div>
-</script>
+<div class="slides-container">
+  <div class="slide" id="slide-1">
+    <div class="centered">
+      <h1>Welcome to Savvy budget</h1>
+      <% if logged_in? %>
+        <p> Welcome back to your <a href="/app"><%= current_budget.title %></a> 
+          <form action="/session" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <div class="index-button">
+              <button>Log out</button>
+            </div>
+          </form>
+        </p>
+      <% else %>
+        <nav><a href="#slide-3">Try Me!</a></nav>
+        <p>Let's go to <span class="go-next">Your budget</span>.</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="slide" id="slide-2">
+    <div class="centered">
+      <h1>Log into your budget</h1>
+      <p>
+        <form action="/session" method="post">
+          <div class="budget-title">
+            <label for="title">Your budget</label>
+            <input type="text" name="title">
+          </div>
+          <div class="budget-password">
+            <label for="password">password</label>
+            <input type="password" name="password">
+          </div>
+          <div class="index-button">
+            <button>Go to my budget</button>
+          </div>
+        </form>
+      </p>
+
+      <p>go back to <span class="go-prev">Home page</span>.</p>
+
+    </div>
+  </div>
+  <div class="slide" id="slide-3">
+    <div class="centered">
+      <p><nav><a href="#slide-1">Go back</a></nav>.</p>
+      <p>go to the <span class="go-next">next slide</span>.</p>
+
+    </div>
+  </div>
+  <div class="slide" id="slide-4">
+    <div class="centered">
+      <form action="/budgets" method="post">
+        <div class="budget-title">
+          <label for="title">Your budget</label>
+          <input type="text" name="title">
+        </div>
+        <div class="budget-password">
+          <label for="password">password</label>
+          <input type="password" name="password">
+        </div>
+        <div class="budget-budget">
+          <label for="budget">budget</label>
+          <input type="number" step="0.01" name="budget">
+        </div>
+        <div class="index-button">
+          <button>Create</button>
+        </div>
+      </form>
+      <p>You can go back to <span class="go-prev">previous slide</span>.</p>
+    </div>
+  </div>
+</div>
+

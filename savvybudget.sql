@@ -6,7 +6,8 @@ CREATE TABLE budgets (
   id SERIAL4 PRIMARY KEY,
   title VARCHAR(300),
   budget DECIMAL(18,2),
-  created_at TIMESTAMP
+  created_at TIMESTAMP,
+  password_digest VARCHAR(300)
 );
 
 CREATE TABLE categories (
@@ -24,3 +25,5 @@ CREATE TABLE expenses (
   cost DECIMAL(18,2),
   created_at TIMESTAMP
 );
+
+-- ALTER TABLE budgets ADD password_digest VARCHAR(300);

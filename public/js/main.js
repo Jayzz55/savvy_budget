@@ -255,6 +255,7 @@ var CategoryView = Backbone.View.extend({
 
   // Remove the item, destroy the model.
   clear: function() {
+    _.invoke(Expenses.where({category_id: this.model.id}), 'destroy');
     this.model.destroy();
   },
 

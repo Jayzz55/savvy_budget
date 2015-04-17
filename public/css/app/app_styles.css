@@ -1,0 +1,333 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.4em;
+  background: #eeeeee;
+  color: #333333;
+  max-width: 520px;
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+#categoryapp {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 40px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 2px 6px 0;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 2px 6px 0;
+  -ms-box-shadow: rgba(0, 0, 0, 0.2) 0 2px 6px 0;
+  -o-box-shadow: rgba(0, 0, 0, 0.2) 0 2px 6px 0;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 2px 6px 0;
+  -webkit-border-radius: 0 0 0.32em 0.32em;
+  -moz-border-radius: 0 0 0.32em 0.32em;
+  -ms-border-radius: 0 0 0.32em 0.32em;
+  -o-border-radius: 0 0 0.32em 0.32em;
+  border-radius: 0 0 0.32em 0.32em;
+}
+
+#categoryapp.overbudget{
+  background: #f50;
+}
+
+#categoryapp h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 0 10px 0;
+}
+
+#categoryapp input[type="text"] {
+  width: 95%;
+  font-size: 24px;
+  font-family: inherit;
+  line-height: 1.4em;
+  border: 0;
+  outline: none;
+  padding: 6px;
+  border: 1px solid #999999;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+  -ms-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+  -o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+}
+
+input[type="number"] {
+  width: 95%;
+  font-size: 24px;
+  font-family: inherit;
+  line-height: 1.4em;
+  border: 0;
+  outline: none;
+  padding: 6px;
+  border: 1px solid #999999;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+  -ms-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+  -o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+}
+
+#categoryapp input::-webkit-input-placeholder {
+  font-style: italic;
+}
+
+#main {
+  display: none;
+}
+
+.budget-label{
+  display: block;
+  width: 40%;
+  margin: 30px auto;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #111;
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.spent-label{
+  display: block;
+  width: 50%;
+  margin: 20px auto;
+  padding-bottom: 10px;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.budget-view{
+  margin-bottom: 20px;
+}
+
+.budget-edit{
+  display: none;
+}
+
+.budget-view.editing .budget-edit {
+  display: block;
+  width: 100%;
+  padding: 13px 15px 14px 20px;
+  margin: 0;
+}
+
+.budget-view.editing .budget-label {
+  display: none;
+}
+
+.category-view{
+  padding-bottom: 20px;
+  border-bottom: 1px solid #cccccc;
+}
+
+#category-list {
+  margin: 10px 0;
+  padding: 0;
+  list-style: none;
+}
+
+#category-list li {
+  padding: 18px 20px 18px 0;
+  position: relative;
+  font-size: 24px;
+  /*margin: 0 -20px -20px -20px;*/
+  /*border-bottom: 1px solid #cccccc;*/
+}
+
+#category-list li:last-child {
+  border-bottom: none;
+}
+
+#category-list .destroy-category {
+  position: absolute;
+  right: 5px;
+  top: 20px;
+  display: none;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  background: url('../img/destroy.png') no-repeat;
+}
+
+#category-list li:hover .destroy-category {
+    display: block;
+}
+
+#category-list .destroy-category:hover {
+    background-position: 0 -20px;
+}
+
+.category-label {
+  /*border: 1px solid red;*/
+}
+
+.category-subtotal{
+  /*border: 1px solid red;*/
+  position: absolute;
+  right: 45px;
+  top: 20px;
+}
+
+#category-list li.editing {
+  border-bottom: none;
+  margin-top: -1px;
+  padding: 0;
+}
+
+#category-list li.editing:last-child {
+  margin-bottom: -1px;
+}
+
+#category-list li.editing .category-edit {
+  display: block;
+  width: 85%;
+  padding: 13px 15px 14px 20px;
+  margin: 0;
+}
+
+#category-list li.editing .category-view {
+  display: none;
+}
+
+#category-list li .category-view label {
+  word-break: break-word;
+}
+
+#category-list li .category-edit {
+  display: none;
+}
+
+#categoryapp footer {
+  display: none;
+  margin: 0 -20px -20px -20px;
+  overflow: hidden;
+  color: #555555;
+  background: #f4fce8;
+  border-top: 1px solid #ededed;
+  padding: 0 20px;
+  line-height: 37px;
+  -webkit-border-radius: 0 0 0.32em 0.32em;
+  -moz-border-radius: 0 0 0.32em 0.32em;
+  -ms-border-radius: 0 0 0.32em 0.32em;
+  -o-border-radius: 0 0 0.32em 0.32em;
+  border-radius: 0 0 0.32em 0.32em;
+}
+
+#instructions {
+  margin: 10px auto;
+  color: #777777;
+  text-shadow: rgba(255, 255, 255, 0.8) 0 1px 0;
+  text-align: center;
+}
+
+#instructions a {
+  color: #336699;
+}
+
+.category-toggle{
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: 20px;
+}
+
+#expense-list.open{
+  display: block;
+  margin-top: 20px;
+}
+
+#expense-list{
+  display: none;
+  margin: 10px 0;
+  padding: 0;
+  list-style: none;
+}
+
+#expense-list li{
+  margin: 20px 0;
+}
+
+#expense-list .destroy-expense {
+  position: absolute;
+  right: 5px;
+  top: 18px;
+  display: none;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  background: url('../img/destroy.png') no-repeat;
+}
+
+#expense-list li:hover .destroy-expense {
+    display: block;
+}
+
+#expense-list .destroy-expense:hover {
+    background-position: 0 -20px;
+}
+
+.expense-label, .expense-edit, .cost-label, .cost-edit, #expense-list input[type="text"], #expense-list input[type="number"]{
+  font-size: 0.8em;
+  display: inline-block;
+  /*border: 1px solid blue;*/
+}
+
+.expense-label{
+  width: 330px;
+  position: absolute;
+}
+
+#expense-list .expense-label:before{
+  position: relative;
+  content: '.  ';
+  font-size: 2em;
+}
+
+#expense-list .expense-label{
+  top: 10px;
+}
+
+#expense-list .expense-view.editing .expense-label{
+  display: none;
+}
+
+#expense-list .expense-view input[type="text"]{
+  display: none;
+}
+
+#expense-list .expense-view.editing input[type="text"]{
+  display: inline-block;
+  width: 60%;
+  position: absolute;
+  left: 0;
+  top:0;
+}
+
+
+.cost-label{
+  width: 70px;
+  position: absolute;
+  right: 45px;
+}
+
+#expense-list .cost-view.editing .cost-label{
+  display: none;
+}
+
+#expense-list .cost-view input[type="number"]{
+  display: none;
+}
+
+#expense-list .cost-view.editing input[type="number"]{
+  display: inline-block;
+  width: 20%;
+  position: absolute;
+  right: 45px;
+  top:0;
+}

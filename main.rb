@@ -38,7 +38,7 @@ post '/session' do
     session[:budget_id] = @budget.id
     redirect to '/app'
   else
-    erb :index
+    erb :index, :layout => :index_layout
   end
 end
 
@@ -69,7 +69,7 @@ end
 
 get '/api/budgets' do
   content_type :json
-  Budget.all.to_json
+  current_budget.to_json
 end
 
 put '/api/budgets/:id' do
@@ -85,7 +85,7 @@ end
 
 get '/api/expenses' do
   content_type :json
-  Expense.order(:id).all.to_json
+  current_budget.expenses.order(:id).all.to_json
 end
 
 put '/api/expenses/:id' do
@@ -122,7 +122,7 @@ end
 
 get '/api/categories' do
   content_type :json
-  Category.order(:id).all.to_json
+  current_budget.categories.order(:id).all.to_json
 end
 
 put '/api/categories/:id' do

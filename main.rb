@@ -7,7 +7,6 @@ require './models/budget'
 require './models/category'
 require './models/expense'
 require './config'
-require 'pry'
 
 enable :sessions
 

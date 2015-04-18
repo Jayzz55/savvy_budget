@@ -1,8 +1,23 @@
-
-
-.budget-title, .budget-password, .budget-budget, .index-button, .sign-up, .sign-in, .button{
+.budget-title, .budget-password, .budget-budget, .index-button, .sign-up, .sign-in, .button, h2{
   text-align: center;
   padding: 10px;
+}
+
+#title{
+  background-color: rgba(220,220,220,0.5);
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 3em;
+  border-radius: 0.5em;
+  border: 1px solid #555;
+  -webkit-box-shadow: 0 4px 0 0 #557;
+  -moz-box-shadow: 0 4px 0 0 #557;
+  box-shadow: 0 4px 0 0 #557;
+}
+
+h2{
+  color: #aa7;
+  font-size: 1em;
 }
 
 .hidden{
@@ -72,8 +87,4 @@ input:autofill, textarea:autofill, select:autofill {
   color: rgb(0, 0, 0);
 }
 
-button.sign-up{
-  display: inline;
-  left: 0.625em;
-}
 

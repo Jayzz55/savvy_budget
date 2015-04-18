@@ -47,7 +47,7 @@ nav ul li:last-child {
     font-weight: normal;
     font-size: 20px;
     text-align: center;
-    border-radius: 4px;
+    border-radius: 0.4em;
     background-color: #FFFFFF;
     color: #83C78E;
     -webkit-box-shadow: none;
@@ -59,9 +59,9 @@ nav ul li:last-child {
     top: 20px;
     background-color: #69C773;
     color: #FFFFFF;
-    -webkit-box-shadow: 0 4px 0 0 #51a65f;
-    -moz-box-shadow: 0 4px 0 0 #51a65f;
-    box-shadow: 0 4px 0 0 #51a65f;
+    -webkit-box-shadow: 0 0.25em 0 0 #51a65f;
+    -moz-box-shadow: 0 0.25em 0 0 #51a65f;
+    box-shadow: 0 0.25em 0 0 #51a65f;
 }
 
 .sign-up a{
@@ -71,7 +71,7 @@ nav ul li:last-child {
     font-weight: normal;
     font-size: 20px;
     text-align: center;
-    border-radius: 4px;
+    border-radius: 0.4em;
     background-color: #fba;
     color: #e25;
     -webkit-box-shadow: none;
@@ -80,22 +80,24 @@ nav ul li:last-child {
 }
 
 .sign-up a:hover {
-    top: -4px;
+    top: -0.25em;
     background-color: #e25;
     color: #fba;
-    -webkit-box-shadow: 0 4px 0 0 #b10;
-    -moz-box-shadow: 0 4px 0 0 #b10;
-    box-shadow: 0 4px 0 0 #b10;
+    -webkit-box-shadow: 0 0.25em 0 0 #b10;
+    -moz-box-shadow: 0 0.25em 0 0 #b10;
+    box-shadow: 0 0.25em 0 0 #b10;
 }
 
 button.sign-up{
     position: relative;
-    top: 0;
+    display: inline;
+    top: 0.3em;
+    left: 0.625em;
     padding: 10px 20px;
     font-weight: normal;
     font-size: 20px;
     text-align: center;
-    border-radius: 4px;
+    border-radius: 0.4em;
     background-color: #fba;
     color: #e25;
     -webkit-box-shadow: none;
@@ -104,12 +106,12 @@ button.sign-up{
 }
 
 button.sign-up:hover {
-    top: -4px;
+    top: 0.3em;
     background-color: #e25;
     color: #fba;
-    -webkit-box-shadow: 0 4px 0 0 #b10;
-    -moz-box-shadow: 0 4px 0 0 #b10;
-    box-shadow: 0 4px 0 0 #b10;
+    -webkit-box-shadow: 0 0.25em 0 0 #b10;
+    -moz-box-shadow: 0 0.25em 0 0 #b10;
+    box-shadow: 0 0.25em 0 0 #b10;
 }
 
 .sign-in a{
@@ -119,7 +121,7 @@ button.sign-up:hover {
     font-weight: normal;
     font-size: 20px;
     text-align: center;
-    border-radius: 4px;
+    border-radius: 0.4em;
     background-color: #abf;
     color: #25e;
     -webkit-box-shadow: none;
@@ -131,9 +133,9 @@ button.sign-up:hover {
     top: 20px;
     background-color: #25e;
     color: #abf;
-    -webkit-box-shadow: 0 4px 0 0 #01e;
-    -moz-box-shadow: 0 4px 0 0 #01e;
-    box-shadow: 0 4px 0 0 #01e;
+    -webkit-box-shadow: 0 0.25em 0 0 #01e;
+    -moz-box-shadow: 0 0.25em 0 0 #01e;
+    box-shadow: 0 0.25em 0 0 #01e;
 }
 
 .slides-container {

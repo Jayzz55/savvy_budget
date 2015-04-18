@@ -7,7 +7,7 @@ body {
 body {
   font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.4em;
-  background: #eeeeee;
+  background: #def;
   color: #333333;
   max-width: 520px;
   margin: 0 auto;
@@ -15,14 +15,15 @@ body {
 }
 
 #categoryapp {
-  background: #fff;
+  background: #444;
+  color: #ddd;
   padding: 20px;
   margin-bottom: 40px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 2px 6px 0;
-  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 2px 6px 0;
-  -ms-box-shadow: rgba(0, 0, 0, 0.2) 0 2px 6px 0;
-  -o-box-shadow: rgba(0, 0, 0, 0.2) 0 2px 6px 0;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 2px 6px 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 0.125em 0.375em 0;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 0.125em 0.375em 0;
+  -ms-box-shadow: rgba(0, 0, 0, 0.2) 0 0.125em 0.375em 0;
+  -o-box-shadow: rgba(0, 0, 0, 0.2) 0 0.125em 0.375em 0;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0.125em 0.375em 0;
   -webkit-border-radius: 0 0 0.32em 0.32em;
   -moz-border-radius: 0 0 0.32em 0.32em;
   -ms-border-radius: 0 0 0.32em 0.32em;
@@ -31,7 +32,8 @@ body {
 }
 
 #categoryapp.overbudget{
-  background: #f50;
+  background: #f32;
+  color: #fff;
 }
 
 #categoryapp h1 {
@@ -48,13 +50,13 @@ body {
   line-height: 1.4em;
   border: 0;
   outline: none;
-  padding: 6px;
+  padding: 0.375em;
   border: 1px solid #999999;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
-  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
-  -ms-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
-  -o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 0.125em 0 inset;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 0.125em 0 inset;
+  -ms-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 0.125em 0 inset;
+  -o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 0.125em 0 inset;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 0.125em 0 inset;
 }
 
 input[type="number"] {
@@ -64,13 +66,13 @@ input[type="number"] {
   line-height: 1.4em;
   border: 0;
   outline: none;
-  padding: 6px;
+  padding: 0.375em;
   border: 1px solid #999999;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
-  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
-  -ms-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
-  -o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 0.125em 0 inset;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 0.125em 0 inset;
+  -ms-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 0.125em 0 inset;
+  -o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 0.125em 0 inset;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 0.125em 0 inset;
 }
 
 #categoryapp input::-webkit-input-placeholder {
@@ -155,7 +157,7 @@ input[type="number"] {
   background: url('../img/destroy.png') no-repeat;
 }
 
-#category-list li:hover .destroy-category {
+#category-list li .category-view:hover .destroy-category {
     display: block;
 }
 
@@ -208,7 +210,7 @@ input[type="number"] {
   margin: 0 -20px -20px -20px;
   overflow: hidden;
   color: #555555;
-  background: #f4fce8;
+  background: #00C590;
   border-top: 1px solid #ededed;
   padding: 0 20px;
   line-height: 37px;
@@ -330,4 +332,47 @@ input[type="number"] {
   position: absolute;
   right: 45px;
   top:0;
+}
+
+button{
+  margin:0;
+  border:0;
+  padding:0;
+  display:inline-block;
+  vertical-align:middle;
+  white-space:normal;
+  background:none;
+  line-height:1;
+  
+}
+
+.logging-out{
+  text-align: center;
+}
+
+button.sign-out{
+  vertical-align:middle;
+  white-space:normal;
+  background:none;
+  position: relative;
+  display: inline-block;
+  margin-top: 1em;
+  padding: 10px 20px;
+  font-weight: normal;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 0.4em;
+  background-color: #fba;
+  color: #e25;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+button.sign-out:hover {
+  background-color: #e25;
+  color: #fba;
+  -webkit-box-shadow: 0 0.25em 0 0 #b10;
+  -moz-box-shadow: 0 0.25em 0 0 #b10;
+  box-shadow: 0 0.25em 0 0 #b10;
 }

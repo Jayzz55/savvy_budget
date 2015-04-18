@@ -1,14 +1,5 @@
 <div id="categoryapp">
-  <section class="logging">
-    <% if logged_in? %>
-        <form action="/session" method="post">
-          <input type="hidden" name="_method" value="delete">
-          <button>Log out</button>
-        </form>
-      </p>
-    <% end %>
-  </section>
-
+  
   <header>
     <h1> <%= @budget.title %> </h1>
     <div class="budget-view" data-id="<%= @budget.id %>">
@@ -29,8 +20,18 @@
 </div>
 
 <div id="instructions">
-  Double-click to edit a category.
+  Double-click / Double-tap / long tap to edit.
 </div>
+
+<section class="logging-out">
+  <% if logged_in? %>
+      <form action="/session" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button class="sign-out">Log out</button>
+      </form>
+    </p>
+  <% end %>
+</section>
 
 
 <!-- Templates -->

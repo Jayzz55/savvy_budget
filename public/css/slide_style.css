@@ -88,6 +88,30 @@ nav ul li:last-child {
     box-shadow: 0 4px 0 0 #b10;
 }
 
+button.sign-up{
+    position: relative;
+    top: 0;
+    padding: 10px 20px;
+    font-weight: normal;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 4px;
+    background-color: #fba;
+    color: #e25;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+button.sign-up:hover {
+    top: -4px;
+    background-color: #e25;
+    color: #fba;
+    -webkit-box-shadow: 0 4px 0 0 #b10;
+    -moz-box-shadow: 0 4px 0 0 #b10;
+    box-shadow: 0 4px 0 0 #b10;
+}
+
 .sign-in a{
     position: relative;
     top: 20px;

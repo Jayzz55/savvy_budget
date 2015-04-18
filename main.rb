@@ -7,10 +7,9 @@ require './models/budget'
 require './models/category'
 require './models/expense'
 require './config'
+require 'pry'
 
 enable :sessions
-
-# require './seed'
 
 after do
   ActiveRecord::Base.connection.close
@@ -62,6 +61,7 @@ end
 post '/budgets' do
   @budget = Budget.create(title: params[:title], budget: params[:budget], password: params[:password])
   session[:budget_id] = @budget.id
+  
   redirect to '/app'
 end
 

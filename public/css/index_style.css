@@ -71,7 +71,9 @@ input:autofill, textarea:autofill, select:autofill {
   background-image: none;
   color: rgb(0, 0, 0);
 }
- 
 
-
+button.sign-up{
+  display: inline;
+  left: 0.625em;
+}
 

@@ -37,7 +37,7 @@ Technologies:
 * [Backbone JS](http://backbonejs.org/)
 * [Zepto JS](http://zeptojs.com/)
 * [Sinatra](http://www.sinatrarb.com/)
-* [Postgreql](http://www.postgresql.org/)
+* [PostgreSQL](http://www.postgresql.org/)
 
 Future plans for verions 2.0:
 -----------------------------

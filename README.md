@@ -1,4 +1,4 @@
-![div](http://i.imgur.com/0WRKg1i.png)
+![div](http://i.imgur.com/pnZBVVa.png)
 
 Savvy Budget
 ==========================
